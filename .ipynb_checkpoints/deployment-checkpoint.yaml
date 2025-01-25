@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: gcr.io/YOUR_PROJECT_ID/flask-app:v3
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT           # Explicitly set PORT
+          value: "5000"        # Use 5000 or your app's default port
+          
